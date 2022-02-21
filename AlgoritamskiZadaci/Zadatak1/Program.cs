@@ -16,12 +16,22 @@ public class Zadatak1
 {
     static void Main(string[] args)
     {
-        string test1 = "ana volimilov ana";
+        
+        string word;
 
-        if (IsPalindrome(test1))
-            Console.WriteLine($"\"{test1}\" is a palindromic word.");
+        do
+        {            
+            Console.WriteLine("Enter a word to check if it is a palindrome: ");
+            word = Console.ReadLine();
+        }
+        while (string.IsNullOrEmpty(word));            
+
+        bool isPalindrome = IsPalindrome(word);
+
+        if (isPalindrome)
+            Console.WriteLine($"\"{word}\" is a palindromic word.");
         else
-            Console.WriteLine($"\"{test1}\" is not a palindromic word.");
+            Console.WriteLine($"\"{word}\" is not a palindromic word.");
     }
 
     public static bool IsPalindrome(string word)
