@@ -7,7 +7,7 @@ public class Program
     static void Main(string[] args)
     {
         Checker checker = new(new PalindromeChecker(), new PalindromeResultPrinter());
-        bool result = checker.CheckString(GetWordFromUser());
+        var result = checker.CheckString(GetWordFromUser());
         checker.PrintResult(result);
     }
 
