@@ -16,22 +16,9 @@ public class Zadatak1
 {
     static void Main(string[] args)
     {
-        
-        string word;
-
-        do
-        {            
-            Console.WriteLine("Enter a word to check if it is a palindrome: ");
-            word = Console.ReadLine();
-        }
-        while (string.IsNullOrEmpty(word));            
-
+        var word = GetWordFromUser();   
         bool isPalindrome = IsPalindrome(word);
-
-        if (isPalindrome)
-            Console.WriteLine($"\"{word}\" is a palindromic word.");
-        else
-            Console.WriteLine($"\"{word}\" is not a palindromic word.");
+        PrintResult(word, isPalindrome);       
     }
 
     public static bool IsPalindrome(string word)
@@ -46,5 +33,27 @@ public class Zadatak1
                 isPalindrome = true;
 
         return isPalindrome;
+    }
+
+    public static string GetWordFromUser()
+    {
+        string word;
+
+        do
+        {
+            Console.WriteLine("Enter a word to check if it is a palindrome: ");
+            word = Console.ReadLine();
+        }
+        while (string.IsNullOrEmpty(word));
+
+        return word;
+    }
+
+    public static void PrintResult(string word, bool isPalindrome)
+    {
+        if (isPalindrome)
+            Console.WriteLine($"\"{word}\" is a palindromic word.");
+        else
+            Console.WriteLine($"\"{word}\" is not a palindromic word.");
     }
 }
