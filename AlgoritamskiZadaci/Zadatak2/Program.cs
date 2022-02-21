@@ -16,6 +16,40 @@ public class Zadatak2
 {
     static void Main(string[] args)
     {
+        string input = GetWordFromUser();
+        PrintResult(input);        
+    }
+
+    private static Dictionary<char, int> CountLetterOccurrences(string word)
+    {
+        Dictionary<char, int> letters = new();
+
+        for (int i = 0; i < word.Length; i++)
+        {
+            if (!letters.ContainsKey(word[i]))
+                letters.Add(word[i], 1);
+            else
+                letters[word[i]]++;
+        }
+
+        return letters;
+    }
+
+    private static void DisplayLetterOccurences(Dictionary<char, int> letters, bool simplified = false)
+    {
+        foreach (KeyValuePair<char, int> kvp in letters)
+        {
+            if (simplified)
+                Console.Write(kvp.Key);
+            else
+                Console.Write("{0}{1}", kvp.Key, kvp.Value);
+        }
+
+        Console.WriteLine();
+    }
+
+    public static string GetWordFromUser()
+    {
         string input;
         do
         {
@@ -24,6 +58,12 @@ public class Zadatak2
         }
         while (string.IsNullOrEmpty(input));
 
+        return input;
+    }
+
+
+    public static void PrintResult(string input)
+    {
         string choice;
         do
         {
@@ -40,33 +80,4 @@ public class Zadatak2
         else
             DisplayLetterOccurences(CountLetterOccurrences(input), true);
     }
-
-    public static Dictionary<char, int> CountLetterOccurrences(string word)
-    {
-        Dictionary<char, int> letters = new();
-
-        for (int i = 0; i < word.Length; i++)
-        {
-            if (!letters.ContainsKey(word[i]))
-                letters.Add(word[i], 1);
-            else
-                letters[word[i]]++;
-        }
-
-        return letters;
-    }
-
-    public static void DisplayLetterOccurences(Dictionary<char, int> letters, bool simplified = false)
-    {
-        foreach (KeyValuePair<char, int> kvp in letters)
-        {
-            if (simplified)
-                Console.Write(kvp.Key);
-            else
-                Console.Write("{0}{1}", kvp.Key, kvp.Value);
-        }
-
-        Console.WriteLine();
-    }
-
 }
