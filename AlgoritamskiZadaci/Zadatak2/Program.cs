@@ -16,15 +16,29 @@ public class Zadatak2
 {
     static void Main(string[] args)
     {
-        string input = "aaabbbcvcntrt";
+        string input;
         do
         {
             Console.WriteLine("Enter a word to count the occurrences of letters: ");
             input = Console.ReadLine();
         }
         while (string.IsNullOrEmpty(input));
-        
-        DisplayLetterOccurences(CountLetterOccurrences(input));
+
+        string choice;
+        do
+        {
+            Console.WriteLine("Would you like to:");
+            Console.WriteLine("(a) Display letters with number of occurrences.");
+            Console.WriteLine("(b) Display the filtered word.");
+            Console.WriteLine("Type 'a' or 'b' and press enter.");
+            choice = Console.ReadLine();
+        } while (string.IsNullOrEmpty(choice) || !(choice.Equals("a") || choice.Equals("b")));
+
+
+        if (choice.Equals("a"))
+            DisplayLetterOccurences(CountLetterOccurrences(input));
+        else
+            DisplayLetterOccurences(CountLetterOccurrences(input), true);
     }
 
     public static Dictionary<char, int> CountLetterOccurrences(string word)
@@ -46,11 +60,12 @@ public class Zadatak2
     {
         foreach (KeyValuePair<char, int> kvp in letters)
         {
-            if(simplified)
+            if (simplified)
                 Console.Write(kvp.Key);
             else
                 Console.Write("{0}{1}", kvp.Key, kvp.Value);
         }
+
         Console.WriteLine();
     }
 
