@@ -17,6 +17,13 @@ public class Zadatak2
     static void Main(string[] args)
     {
         string input = "aaabbbcvcntrt";
+        do
+        {
+            Console.WriteLine("Enter a word to count the occurrences of letters: ");
+            input = Console.ReadLine();
+        }
+        while (string.IsNullOrEmpty(input));
+        
         DisplayLetterOccurences(CountLetterOccurrences(input));
     }
 
