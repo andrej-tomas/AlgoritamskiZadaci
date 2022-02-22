@@ -5,17 +5,14 @@ public class PalindromeChecker : IStringChecker
     {
         int length = word.Length;
         int halfLength = length / 2;
-        bool isPalindrome = false;
 
         for (int i = 0; i < halfLength; i++)
         {
-            if (word[i] == word[length - i - 1])
-                isPalindrome = true;
-            else 
-                isPalindrome = false;
+            if (word[i] != word[length - i - 1])
+                return false;
         }            
 
-        return isPalindrome;
+        return true;
     }
 }
 
