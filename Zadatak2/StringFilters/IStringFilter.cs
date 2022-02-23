@@ -1,6 +1,6 @@
 ﻿namespace Zadatak2.StringFilters;
 
-public interface IStringFilter<T>
+public interface IStringFilter
 {
-    string Filter(T t);
+    string Filter(string word);
 }

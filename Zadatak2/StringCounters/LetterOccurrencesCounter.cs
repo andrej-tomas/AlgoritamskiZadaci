@@ -1,8 +1,10 @@
-﻿namespace Zadatak2.StringCounters;
+﻿using System.Text;
 
-public class LetterOccurrencesCounter : ICounter<Dictionary<char, int>>
+namespace Zadatak2.StringCounters;
+
+public class LetterOccurrencesCounter : ICounter<string>
 {
-    public Dictionary<char, int> Count(string word)
+    public string Count(string word)
     {
         Dictionary<char, int> letters = new();
 
@@ -14,6 +16,16 @@ public class LetterOccurrencesCounter : ICounter<Dictionary<char, int>>
                 letters[word[i]]++;
         }
 
-        return letters;
+        return GenerateWordResult(letters);
+    }
+
+    private static string GenerateWordResult(Dictionary<char, int> letters)
+    {
+        StringBuilder result = new();
+        foreach (KeyValuePair<char, int> pair in letters)
+        {
+            result.Append($"{pair.Key}{pair.Value}");
+        }
+        return result.ToString();
     }
 }

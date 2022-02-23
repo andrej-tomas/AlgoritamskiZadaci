@@ -1,5 +1,4 @@
-﻿using Zadatak2.ResultPrinters;
-using Zadatak2.StringCounters;
+﻿using Zadatak2.StringCounters;
 using Zadatak2.StringFilters;
 
 namespace Zadatak2;
@@ -8,19 +7,18 @@ public class Program
 {
     static void Main(string[] args)
     {
-        var word = GetWordFromUser();
-        ICounter<Dictionary<char, int>> counter = new LetterOccurrencesCounter();
+        var word = GetWordFromUser();   
+        ICounter<string> counter = new LetterOccurrencesCounter();
         var result = counter.Count(word);
         var filterChoice = GetFilterChoiceFromUser();
 
         if (filterChoice.Equals("a"))
-            new LetterOccurrencesPrinter().Print(result);
+            Console.WriteLine(result);
         else
-            Console.WriteLine(new DuplicatelettersFilter().Filter(result));
-
+            Console.WriteLine(new DuplicatelettersFilter().Filter(word));
     }
 
-    public static string GetWordFromUser()
+    private static string GetWordFromUser()
     {
         string input;
         do
@@ -30,10 +28,10 @@ public class Program
         }
         while (string.IsNullOrEmpty(input));
 
-        return input;
+        return input.Replace(" ", "").ToLower();
     }
 
-    public static string GetFilterChoiceFromUser()
+    private static string GetFilterChoiceFromUser()
     {
         string choice;
         do

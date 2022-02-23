@@ -2,16 +2,29 @@
 
 namespace Zadatak2.StringFilters;
 
-public class DuplicatelettersFilter : IStringFilter<Dictionary<char, int>>
+public class DuplicatelettersFilter : IStringFilter
 {
-    public string Filter(Dictionary<char, int> letters)
+    public string Filter(string word)
     {
-        StringBuilder result = new();
-        foreach (KeyValuePair<char, int> kvp in letters)
+        HashSet<char> uniqueLetters = new();
+
+        for (int i = 0; i < word.Length; i++)
         {
-            result.Append(kvp.Key);
+           uniqueLetters.Add(word[i]);
         }
 
-        return result.ToString();
+        return GenerateFilteredString(uniqueLetters);
+    }
+
+    private static string GenerateFilteredString(HashSet<char> letters)
+    {
+        StringBuilder stringBuilder = new();
+
+        foreach (char c in letters)
+        {
+            stringBuilder.Append(c);
+        }
+
+        return stringBuilder.ToString();
     }
 }
